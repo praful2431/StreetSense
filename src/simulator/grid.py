@@ -52,18 +52,39 @@ class Grid:
         return None
 
     def add_office(self, position: Position) -> Office | None:
-        for driveway_offset in random.sample(OFFICE_DRIVEWAY_OFFSETS, len(OFFICE_DRIVEWAY_OFFSETS)):
-            office = Office(position, driveway_offset)
-            required_positions = (office.building_positions + (office.driveway_position,))
 
-            if all(self.is_empty(pos) for pos in required_positions):
-                for pos in office.building_positions:
-                    self.layout[pos.row, pos.col] = office
+        possible_anchors = [
+            Position(position.row, position.col),
+            Position(position.row, position.col - 1),
+            Position(position.row - 1, position.col),
+            Position(position.row - 1, position.col - 1),
+        ]
 
-                driveway = office.driveway_position
-                self.layout[driveway.row, driveway.col] = office
+        random.shuffle(possible_anchors)
 
-                return office
+        for anchor in possible_anchors:
+            if not self.is_valid_position(anchor):
+                continue
+
+            for driveway_offset in random.sample(
+                OFFICE_DRIVEWAY_OFFSETS,
+                len(OFFICE_DRIVEWAY_OFFSETS),
+            ):
+                office = Office(anchor, driveway_offset)
+
+                required_positions = (
+                    office.building_positions
+                    + (office.driveway_position,)
+                )
+
+                if all(
+                    self.is_empty(pos)
+                    for pos in required_positions
+                ):
+                    for pos in required_positions:
+                        self.layout[pos.row, pos.col] = office
+
+                    return office
 
         return None
 

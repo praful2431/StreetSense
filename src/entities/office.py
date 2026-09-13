@@ -2,14 +2,14 @@ from dataclasses import dataclass
 from .position import Position
 
 OFFICE_DRIVEWAY_OFFSETS = (
-    (-1, 0),  # above, left column
-    (-1, 1),  # above, right column
-    (0, -1),  # left, top row
-    (1, -1),  # left, bottom row
-    (0, 2),   # right, top row
-    (1, 2),   # right, bottom row
-    (2, 0),   # below, left column
-    (2, 1),   # below, right column
+    (-1, 0),
+    (-1, 1),
+    (0, -1),
+    (1, -1),
+    (0, 2),
+    (1, 2),
+    (2, 0),
+    (2, 1),
 )
 
 @dataclass(frozen=True)
@@ -23,7 +23,8 @@ class Office:
 
     @property
     def building_positions(self) -> tuple[Position, ...]:
-        row, col = self.position.row, self.position.col
+        row = self.position.row
+        col = self.position.col
 
         return (
             Position(row, col),
