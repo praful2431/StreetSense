@@ -13,28 +13,15 @@ class CityGenerator:
         return Position(row = self.random.randrange(self.grid.rows), col = self.random.randrange(self.grid.cols))
 
     #general function to be used
-    def generate(self, houses: int, offices: int) -> tuple[int, int]:
-        if houses < 0 or offices < 0:
-            raise ValueError("Counts cannot be negative")
-
+    def generate(self) -> tuple[int, int]:
         houses_placed = 0
         offices_placed = 0
-        attempts = 0
-        max_attempts = (houses + offices) * 30
+        choices = ["house", "office"]
 
-        while ((houses_placed < houses or offices_placed < offices) and attempts < max_attempts):
-            choices = []
-
-            if houses_placed < houses:
-                choices.append("house")
-
-            if offices_placed < offices:
-                choices.append("office")
-
+        while ((2*houses_placed + 5*offices_placed) / (self.grid.rows * self.grid.cols) <= 0.2):
 
             entity_type = self.random.choice(choices)
             position = self._rand_position()
-            attempts += 1
 
             if entity_type == "house":
                 if self.grid.add_house(position) is not None:
