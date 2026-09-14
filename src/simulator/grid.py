@@ -1,11 +1,6 @@
 import random
 import numpy as np
-from entities import (Direction,
-                      House,
-                      Office,
-                      Position,
-                      Road,
-                      OFFICE_DRIVEWAY_OFFSETS)
+from entities import (Direction, House, Office, Position, Road, OFFICE_DRIVEWAY_OFFSETS)
 
 
 class Grid:

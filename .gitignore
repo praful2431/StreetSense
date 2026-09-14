@@ -4,3 +4,8 @@ src/entities/__pycache__/house.cpython-311.pyc
 src/entities/__pycache__/office.cpython-311.pyc
 src/entities/__pycache__/position.cpython-311.pyc
 src/entities/__pycache__/road.cpython-311.pyc
+src/__pycache__/__init__.cpython-311.pyc
+src/__pycache__/main.cpython-311.pyc
+src/automation/__pycache__/__init__.cpython-311.pyc
+src/automation/__pycache__/city_generator.cpython-311.pyc
+src/simulator/__pycache__/grid.cpython-311.pyc
