@@ -1,7 +1,7 @@
 import unittest
 
 from simulator import Grid
-from automation.city_generator import CityGenerator
+from automation import CityGenerator
 
 
 class TestCityGenerator(unittest.TestCase):
