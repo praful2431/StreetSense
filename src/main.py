@@ -17,6 +17,7 @@ def main() -> None:
     grid.print_grid()
 
     print("------------------------------------------------------------")
+
     grid = Grid(12, 12)
 
     generator = CityGenerator(grid, seed=42)
