@@ -51,8 +51,10 @@ class Grid:
         possible_anchors = [
             Position(position.row, position.col),
             Position(position.row, position.col - 1),
+            Position(position.row, position.col - 2),
             Position(position.row - 1, position.col),
             Position(position.row - 1, position.col - 1),
+            Position(position.row - 1, position.col - 2),
         ]
 
         random.shuffle(possible_anchors)

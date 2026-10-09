@@ -4,12 +4,14 @@ from .position import Position
 OFFICE_DRIVEWAY_OFFSETS = (
     (-1, 0),
     (-1, 1),
+    (-1, 2),
     (0, -1),
     (1, -1),
-    (0, 2),
-    (1, 2),
+    (0, 3),
+    (1, 3),
     (2, 0),
-    (2, 1),
+    (2, 1), 
+    (2, 2),
 )
 
 @dataclass(frozen=True)
