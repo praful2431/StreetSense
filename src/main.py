@@ -4,19 +4,6 @@ from automation import CityGenerator
 
 
 def main() -> None:
-    grid = Grid(5, 5)
-
-    grid.add_house(Position(0, 0))
-    grid.add_road(Position(2,4))
-    grid.add_office(Position(4, 4))
-    grid.add_road(Position(4,2))
-
-    grid.remove_road(Position(0,1))
-
-
-    grid.print_grid()
-
-    print("------------------------------------------------------------")
 
     grid = Grid(12, 12)
 

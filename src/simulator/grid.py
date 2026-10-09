@@ -111,7 +111,7 @@ class Grid:
                 elif isinstance(item, House):
                     symbol = "H" if item.position == Position(row, col) else "d"
                 elif isinstance(item, Office):
-                    symbol = "O" if Position(row, col) in item.building_positions else "d"
+                    symbol = "O" if Position(row, col) in item.building_positions else "D"
                 else:
                     symbol = "?"
 

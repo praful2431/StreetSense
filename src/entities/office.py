@@ -25,21 +25,17 @@ class Office:
 
     @property
     def building_positions(self) -> tuple[Position, ...]:
-        row = self.position.row
-        col = self.position.col
-
+        row, col = self.position.row, self.position.col
         return (
             Position(row, col),
             Position(row, col + 1),
+            Position(row, col + 2),
             Position(row + 1, col),
             Position(row + 1, col + 1),
+            Position(row + 1, col + 2),
         )
 
     @property
     def driveway_position(self) -> Position:
         dr, dc = self.driveway_offset
-
-        return Position(
-            self.position.row + dr,
-            self.position.col + dc,
-        )
+        return Position(self.position.row + dr, self.position.col + dc)
