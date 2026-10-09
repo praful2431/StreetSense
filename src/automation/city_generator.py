@@ -18,7 +18,7 @@ class CityGenerator:
         offices_placed = 0
         choices = ["house", "office"]
 
-        while ((2*houses_placed + 5*offices_placed) / (self.grid.rows * self.grid.cols) <= 0.2):
+        while ((2*houses_placed + 7*offices_placed) / (self.grid.rows * self.grid.cols) <= 0.2):
 
             entity_type = self.random.choice(choices)
             position = self._rand_position()

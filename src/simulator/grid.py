@@ -51,8 +51,10 @@ class Grid:
         possible_anchors = [
             Position(position.row, position.col),
             Position(position.row, position.col - 1),
+            Position(position.row, position.col - 2),
             Position(position.row - 1, position.col),
             Position(position.row - 1, position.col - 1),
+            Position(position.row - 1, position.col - 2),
         ]
 
         random.shuffle(possible_anchors)
@@ -109,7 +111,7 @@ class Grid:
                 elif isinstance(item, House):
                     symbol = "H" if item.position == Position(row, col) else "d"
                 elif isinstance(item, Office):
-                    symbol = "O" if Position(row, col) in item.building_positions else "d"
+                    symbol = "O" if Position(row, col) in item.building_positions else "D"
                 else:
                     symbol = "?"
 
