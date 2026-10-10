@@ -6,12 +6,13 @@ from entities import (Direction, House, Office, Position, Road, OFFICE_DRIVEWAY_
 class Grid:
     EMPTY = 0
 
-    def __init__(self, rows: int, cols: int):
+    def __init__(self, rows: int, cols: int, seed: int | None = None):
         if rows <= 0 or cols <= 0:
             raise ValueError("Grid dimensions must be positive.")
 
         self.rows = rows
         self.cols = cols
+        self.random = random.Random(seed)
         self.layout = np.full((rows, cols), self.EMPTY, dtype=object)
 
     def is_valid_position(self, position: Position) -> bool:

@@ -10,7 +10,7 @@ class CityGenerator:
 
     #find a random position
     def _rand_position(self) -> Position:
-        return Position(row = self.random.randrange(self.grid.rows), col = self.random.randrange(self.grid.cols))
+        return Position(row = self.random.randrange(self.grid.rows), col = self.random.randrange(self.grid.cols),)
 
     #general function to be used
     def generate(self) -> tuple[int, int]:
