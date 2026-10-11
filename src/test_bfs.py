@@ -2,7 +2,7 @@ import unittest
 
 from entities import Position, Road, House
 from simulator import Grid
-from automation.bfs_path import bfsPath
+from pathfinding import bfsPath
 
 
 class TestBFSPath(unittest.TestCase):
