@@ -35,7 +35,7 @@ class Grid:
             return None
 
         directions = list(Direction)
-        random.shuffle(directions)
+        self.random.shuffle(directions)
 
         for direction in directions:
             house = House(position, direction)
@@ -58,13 +58,13 @@ class Grid:
             Position(position.row - 1, position.col - 2),
         ]
 
-        random.shuffle(possible_anchors)
+        self.random.shuffle(possible_anchors)
 
         for anchor in possible_anchors:
             if not self.is_valid_position(anchor):
                 continue
 
-            for driveway_offset in random.sample(
+            for driveway_offset in self.random.sample(
                 OFFICE_DRIVEWAY_OFFSETS,
                 len(OFFICE_DRIVEWAY_OFFSETS),
             ):

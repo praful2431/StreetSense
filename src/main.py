@@ -25,6 +25,10 @@ def get_driveways(grid: Grid) -> tuple[list[Position], list[Position]]:
 
 
 def main() -> None:
+    #Fixed Grid Generation
+    grid = Grid(10, 10, seed=42)
+
+    #Random Grid Genertion
     grid = Grid(10, 10)
     generator = CityGenerator(grid, seed=42)
 
@@ -42,23 +46,21 @@ def main() -> None:
         return
 
 
-    start = house_driveways[0]
-    goal = office_driveways[0]
+    for d in house_driveways:
+        for D in office_driveways:
+            path = bfs_path.bfsPath(grid, d, D)
 
-    path = bfs_path.bfsPath(grid, start, goal)
+            if path is None:
+                print(f"\nHouse {d} and Office {D} - No path found.\n")
+                return
 
-    if path is None:
-        print("No path found.")
-        return
+            print(f"\nHouse {d} and Office {D} - Path found:")
+            print(path)
+            print(f"Path distance: {len(path) - 1} \n")
 
-    print("\nPath found:")
-    print(path)
-    print(f"Path distance: {len(path) - 1}")
-
-
-    for position in path[1:-1]:
-        if grid.is_empty(position):
-            grid.add_road(position)
+            for position in path[1:-1]:
+                if grid.is_empty(position):
+                    grid.add_road(position)
 
     print("\nCity after road construction:")
     grid.print_grid()

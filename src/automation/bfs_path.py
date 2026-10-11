@@ -35,30 +35,33 @@ def bfsPath(grid: Grid, house: Position, office: Position):
             #check if not within grid
             if(grid.rows <= x or x < 0 or grid.cols <= y or y < 0): continue
 
-            if(Position(x,y) == office):
+            position = Position(x, y)
+            cell = grid.layout[x, y]
+
+            if(position == office):
                 print("Dest. Node Found")
                 visited[x][y] = 1
                 distance[x][y] = distance[cR][cC] + 1
                 rear+=1
-                queue[rear] = Position(x,y)
+                queue[rear] = position
                 print(queue)
-                for row in visited:
-                    for col in row:
-                        print(col, end = " ")
-                    print("\n")
-                print("\n\n\n")
-                for row in distance:
-                    for col in row:
-                        print(col, end = " ")
-                    print("\n")
+                # for row in visited:
+                #     for col in row:
+                #         print(col, end = " ")
+                #     print("\n")
+                # print("\n\n\n")
+                # for row in distance:
+                #     for col in row:
+                #         print(col, end = " ")
+                #     print("\n")
                 destFound = True
                 break
             
-            if(visited[x][y] == 0 and grid.is_empty(Position(x,y))):
+            if(visited[x][y] == 0 and (grid.is_empty(position) or isinstance(cell, Road))):
                 visited[x][y] = 1
                 distance[x][y] = distance[cR][cC] + 1
                 rear+=1
-                queue[rear] = Position(x,y)
+                queue[rear] = position
 
     if distance[office.row][office.col] == -1:
         print("No path found")
@@ -88,5 +91,5 @@ def bfsPath(grid: Grid, house: Position, office: Position):
 
     path.append(house)
     path.reverse()
-    print(path, sep=" /t ")
+    # print(path, sep=" /t ")
     return path
