@@ -48,7 +48,9 @@ class Grid:
         return None
 
     def add_office(self, position: Position) -> Office | None:
-
+        if self.rows < 2 or self.cols < 3:
+            return None
+        
         possible_anchors = [
             Position(position.row, position.col),
             Position(position.row, position.col - 1),

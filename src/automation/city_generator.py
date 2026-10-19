@@ -1,6 +1,6 @@
 import random
 
-from entities import Position
+from entities import Position, House, Office
 from simulator import Grid
 
 class CityGenerator:
@@ -16,11 +16,19 @@ class CityGenerator:
     def generate(self) -> tuple[int, int]:
         houses_placed = 0
         offices_placed = 0
-        choices = ["house", "office"]
 
-        while ((2*houses_placed + 7*offices_placed) / (self.grid.rows * self.grid.cols) <= 0.2):
+        total_cells = self.grid.rows * self.grid.cols
+        max_attempts = total_cells * 30
+        attempts = 0
 
-            entity_type = self.random.choice(choices)
+        self._ensure_minimum_buildings()
+
+        while (
+            (2 * houses_placed + 7 * offices_placed) / total_cells < 0.2
+            and attempts < max_attempts
+        ):
+            attempts += 1
+            entity_type = self.random.choice(["house", "office"])
             position = self._rand_position()
 
             if entity_type == "house":
@@ -57,3 +65,24 @@ class CityGenerator:
             max_attempts -= 1
 
         return placed
+
+    # helper function to ensure min. 1 house and 1 office
+    def _ensure_minimum_buildings(self) -> None:
+        if self.grid.rows * self.grid.cols < 2:
+            raise ValueError(
+                "Grid is too small to guarantee a house and an office."
+            )
+
+        if not any(
+            isinstance(cell, House)
+            for row in self.grid.layout
+            for cell in row
+        ):
+            self.gen_houses(1)
+
+        if not any(
+            isinstance(cell, Office)
+            for row in self.grid.layout
+            for cell in row
+        ):
+            self.gen_offices(1)

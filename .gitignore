@@ -16,3 +16,4 @@ src/automation/__pycache__/bfs_path.cpython-311.pyc
 src/pathfinding/__pycache__/__init__.cpython-311.pyc
 src/simulator/__pycache__/grid_queries.cpython-311.pyc
 src/pathfinding/__pycache__/bfs.cpython-311.pyc
+src/pathfinding/__pycache__/heuristic_calc.cpython-311.pyc

@@ -13,7 +13,6 @@ def bfsPath(grid: Grid, house: Position, office: Position):
     for i in range(grid.rows):
         distance.append([-1] * grid.cols)
 
-    src = house
     visited[house.row][house.col] = 1
     distance[house.row][house.col] = 0
 
@@ -28,7 +27,7 @@ def bfsPath(grid: Grid, house: Position, office: Position):
         front+=1
 
 
-        for i in [(-1,0), (0,-1), (1,0), (0,1)]:
+        for i in [(-1,0), (-1,-1), (0,-1), (1,-1), (1,0), (1,1), (0,1), (-1,1)]:
             x = cR+i[0]
             y = cC+i[1]
 
@@ -39,12 +38,12 @@ def bfsPath(grid: Grid, house: Position, office: Position):
             cell = grid.layout[x, y]
 
             if(position == office):
-                print("Dest. Node Found")
+                # print("Dest. Node Found")
                 visited[x][y] = 1
                 distance[x][y] = distance[cR][cC] + 1
                 rear+=1
                 queue[rear] = position
-                print(queue)
+                # print(queue)
                 # for row in visited:
                 #     for col in row:
                 #         print(col, end = " ")
@@ -81,7 +80,7 @@ def bfsPath(grid: Grid, house: Position, office: Position):
 
         curDist = distance[cur.row][cur.col]
 
-        for i in [(-1,0), (0,-1), (1,0), (0,1)]:
+        for i in [(-1,0), (-1,-1), (0,-1), (1,-1), (1,0), (1,1), (0,1), (-1,1)]:
             x = cur.row+i[0]
             y = cur.col+i[1]
 
