@@ -38,7 +38,17 @@ class CityGenerator:
                 if self.grid.add_office(position) is not None:
                     offices_placed += 1
 
-        return houses_placed, offices_placed
+        houses = set()
+        offices = set()
+
+        for row in self.grid.layout:
+            for cell in row:
+                if isinstance(cell, House):
+                    houses.add(cell)
+                elif isinstance(cell, Office):
+                    offices.add(cell)
+
+        return len(houses), len(offices)
 
     #input: grid & house count
     #output: return no. of houses placed

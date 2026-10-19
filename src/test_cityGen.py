@@ -53,10 +53,8 @@ class TestCityGenerator(unittest.TestCase):
         grid = Grid(1, 1, seed=42)
         generator = CityGenerator(grid, seed=42)
 
-        houses, offices = generator.generate()
-
-        self.assertGreaterEqual(houses, 0)
-        self.assertGreaterEqual(offices, 0)
+        with self.assertRaises(ValueError):
+            generator.generate()
 
     def test_invalid_grid_dimensions(self):
         with self.assertRaises(ValueError):

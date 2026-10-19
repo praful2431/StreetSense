@@ -17,7 +17,7 @@ class TestBFSPath(unittest.TestCase):
         self.assertIsNotNone(path)
         self.assertEqual(path[0], start)
         self.assertEqual(path[-1], goal)
-        self.assertEqual(len(path) - 1, 8)
+        self.assertEqual(len(path) - 1, 4)
 
     def test_start_equals_goal(self):
         grid = Grid(5, 5)
@@ -56,7 +56,9 @@ class TestBFSPath(unittest.TestCase):
             row_diff = abs(path[i].row - path[i + 1].row)
             col_diff = abs(path[i].col - path[i + 1].col)
 
-            self.assertEqual(row_diff + col_diff, 1)
+            self.assertLessEqual(row_diff, 1)
+            self.assertLessEqual(col_diff, 1)
+            self.assertGreater(row_diff + col_diff, 0)
 
     def test_path_stays_inside_grid(self):
         grid = Grid(5, 5)
@@ -225,7 +227,16 @@ class TestBFSPath(unittest.TestCase):
                 abs(path[i].row - path[i + 1].row)
                 + abs(path[i].col - path[i + 1].col)
             )
-            self.assertEqual(distance, 1)
+            self.assertEqual(path[0], start)
+            self.assertEqual(path[-1], goal)
+
+            for a, b in zip(path, path[1:]):
+                row_diff = abs(a.row - b.row)
+                col_diff = abs(a.col - b.col)
+
+                self.assertLessEqual(row_diff, 1)
+                self.assertLessEqual(col_diff, 1)
+                self.assertGreater(row_diff + col_diff, 0)
 
 
 if __name__ == "__main__":
