@@ -2,6 +2,11 @@ from entities import Position, Road
 from simulator import Grid
 
 def bfsPath(grid: Grid, house: Position, office: Position):
+
+    #out of bounds checkers
+    if not grid.is_valid_position(house) or not grid.is_valid_position(office):
+        return None
+
     visited = []
     for i in range(grid.rows): visited.append([0] * grid.cols)
 

@@ -83,16 +83,20 @@ class CityGenerator:
                 "Grid is too small to guarantee a house and an office."
             )
 
-        if not any(
+        has_house = any(
             isinstance(cell, House)
             for row in self.grid.layout
             for cell in row
-        ):
-            self.gen_houses(1)
+        )
 
-        if not any(
+        if not has_house and self.gen_houses(1) != 1:
+            raise ValueError("Could not place the minimum required house.")
+
+        has_office = any(
             isinstance(cell, Office)
             for row in self.grid.layout
             for cell in row
-        ):
-            self.gen_offices(1)
+        )
+
+        if not has_office and self.gen_offices(1) != 1:
+            raise ValueError("Could not place the minimum required office.")
